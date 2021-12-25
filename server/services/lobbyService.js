@@ -1,4 +1,4 @@
-const {User, Lobby, Owner, Price} = require("../models/models");
+const {User, Lobby, Owner, Price, Participant} = require("../models/models");
 
 class LobbyService {
     async create(title, description, isPrivate, ownerId, giftPrice, currency) {
@@ -33,7 +33,8 @@ class LobbyService {
             },
             include:
                 [{model: Owner, as: "owner"},
-                    {model: Price, as: "price"}]
+                    {model: Price, as: "price"},
+                    {model: Participant, as: "participant"}]
         });
     }
 
@@ -45,7 +46,8 @@ class LobbyService {
             {
                 include:
                     [{model: Owner, as: "owner"},
-                        {model: Price, as: "price"}]
+                        {model: Price, as: "price"},
+                        {model: Participant, as: "participant"}]
             });
     }
 }
