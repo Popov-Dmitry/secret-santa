@@ -56,5 +56,6 @@ module.exports = {
     User,
     Participant,
     Lobby,
+    Owner,
     Price
 }
