@@ -45,8 +45,7 @@ class LobbyService {
             {
                 include:
                     [{model: Owner, as: "owner"},
-                        {model: Price, as: "price"},
-                        {model: Participant, as: "participant"}]
+                        {model: Price, as: "price"}]
             });
     }
 

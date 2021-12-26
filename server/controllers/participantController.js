@@ -8,7 +8,7 @@ class ParticipantController {
             return res.status(201).json(participant);
         }
         catch (e) {
-            return res.status(400).json(e)
+            return res.status(400).json(e.toString())
         }
     }
 
@@ -18,7 +18,17 @@ class ParticipantController {
             return res.status(201).json(participant);
         }
         catch (e) {
-            return res.status(400).json(e);
+            return res.status(400).json(e.toString());
+        }
+    }
+
+    async getByLobbyId(req, res) {
+        try {
+            let participants = await participantService.findByLobbyId(req.params.id);
+            return res.status(200).json(participants);
+        }
+        catch (e) {
+            return res.status(404).json(e.toString());
         }
     }
 }

@@ -8,7 +8,7 @@ class LobbyController {
             return res.status(201).json(lobby);
         }
         catch (e) {
-            return res.status(400).json(e);
+            return res.status(400).json(e.toString());
         }
     }
 
@@ -18,7 +18,7 @@ class LobbyController {
             return res.status(200).json(lobbies);
         }
         catch (e) {
-            return res.status(500).json(e);
+            return res.status(500).json(e.toString());
         }
     }
 
@@ -28,7 +28,7 @@ class LobbyController {
             return res.status(200).json(lobby);
         }
         catch (e) {
-            return res.status(404).json(e);
+            return res.status(404).json(e.toString());
         }
     }
 
@@ -38,7 +38,7 @@ class LobbyController {
             return res.status(201).json(lobby);
         }
         catch (e) {
-            return res.status(404).json(e);
+            return res.status(404).json(e.toString());
         }
     }
 }
