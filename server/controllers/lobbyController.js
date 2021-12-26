@@ -31,6 +31,16 @@ class LobbyController {
             return res.status(404).json(e);
         }
     }
+
+    async getByInviteCode(req, res) {
+        try {
+            let lobby = await lobbyService.findByInviteCode(req.params.id);
+            return res.status(201).json(lobby);
+        }
+        catch (e) {
+            return res.status(404).json(e);
+        }
+    }
 }
 
 module.exports = new LobbyController();

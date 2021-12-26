@@ -23,7 +23,7 @@ class LobbyService {
                 currency: currency,
                 lobbyId: lobby.id});
         }
-        return lobby;
+        return await this.findById(lobby.id);
     }
 
     async findAllPublic() {
@@ -33,8 +33,7 @@ class LobbyService {
             },
             include:
                 [{model: Owner, as: "owner"},
-                    {model: Price, as: "price"},
-                    {model: Participant, as: "participant"}]
+                    {model: Price, as: "price"}]
         });
     }
 
@@ -49,6 +48,24 @@ class LobbyService {
                         {model: Price, as: "price"},
                         {model: Participant, as: "participant"}]
             });
+    }
+
+    async findByInviteCode(inviteCode) {
+        if (!inviteCode || inviteCode.trim().length === 0) {
+            throw new Error("Incorrect invite code")
+        }
+        let lobby = await Lobby.findOne({
+            where: {
+                invite_code: inviteCode
+            },
+            include:
+                [{model: Owner, as: "owner"},
+                    {model: Price, as: "price"}]
+        });
+        if (lobby) {
+            return lobby;
+        }
+        throw new Error("Incorrect invite code");
     }
 }
 
