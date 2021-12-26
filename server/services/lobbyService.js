@@ -1,4 +1,4 @@
-const {User, Lobby, Owner, Price, Participant} = require("../models/models");
+const {User, Lobby, Owner, Price} = require("../models/models");
 
 class LobbyService {
     async create(title, description, isPrivate, ownerId, giftPrice, currency) {
@@ -13,12 +13,12 @@ class LobbyService {
             is_private: isPrivate,
             invite_code: inviteCode});
 
-        const owner = await Owner.create({
+        await Owner.create({
             lobbyId: lobby.id,
             userId: ownerId});
 
         if (giftPrice && currency) {
-            const price = await Price.create({
+            await Price.create({
                 gift_price: giftPrice,
                 currency: currency,
                 lobbyId: lobby.id});

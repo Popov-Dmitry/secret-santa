@@ -1,7 +1,7 @@
 const Router = require("express");
 const router = new Router();
 const lobbyController = require("../controllers/lobbyController");
-const authMiddleware = require("../middleware/authMiddleware")
+const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/", authMiddleware, lobbyController.create);
 router.get("/", lobbyController.getAllPublic);

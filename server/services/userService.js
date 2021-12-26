@@ -12,10 +12,9 @@ class UserService {
         }
         const candidate = await User.findOne(
             {
-                where:
-                    {
-                        email: email
-                    }
+                where: {
+                    email: email
+                }
             });
         if (candidate) {
             throw new Error(`User with email ${email} already exists`);
@@ -38,10 +37,9 @@ class UserService {
         }
         const user = await User.findOne(
             {
-                where:
-                    {
-                        email: email
-                    }
+                where: {
+                    email: email
+                }
             });
         if (!user) {
             throw new Error(`User with email ${email} already exists`);
