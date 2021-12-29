@@ -37,6 +37,11 @@ const Price = sequelize.define("price",
         currency: {type: DataTypes.STRING}
     });
 
+const Pair = sequelize.define("pair",
+    {
+        id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+    });
+
 User.hasMany(Participant);
 Participant.belongsTo(User);
 
@@ -52,10 +57,17 @@ Owner.belongsTo(User);
 Lobby.hasOne(Price);
 Price.belongsTo(Lobby);
 
+Participant.hasOne(Pair);
+Pair.belongsTo(Participant, {as: "from"});
+
+Participant.hasOne(Pair);
+Pair.belongsTo(Participant, {as: "to"});
+
 module.exports = {
     User,
     Participant,
     Lobby,
     Owner,
-    Price
+    Price,
+    Pair
 }
