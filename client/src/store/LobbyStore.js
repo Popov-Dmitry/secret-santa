@@ -2,7 +2,7 @@ import {makeAutoObservable} from "mobx";
 
 export default class LobbyStore {
     constructor() {
-        this._lobbies = {}
+        this._lobbies = [];
         makeAutoObservable(this);
     }
 
