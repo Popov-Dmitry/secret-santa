@@ -1,9 +1,14 @@
 import {makeAutoObservable} from "mobx";
+import {fetchById} from "../http/userApi";
 
 export default class UserStore {
     constructor() {
         this._isAuth = false;
         this._user = {};
+        let userId = localStorage.getItem("userId");
+        if (userId) {
+            fetchById(userId).then(({data}) => this._user = data);
+        }
         makeAutoObservable(this);
     }
 

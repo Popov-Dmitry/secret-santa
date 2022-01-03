@@ -21,7 +21,7 @@ class UserService {
         }
         const hashPassword = await bcrypt.hash(password, 5);
         const user = await User.create({email, password: hashPassword, full_name});
-        return generateJwt(user.id, user.email);
+        return getUserWithToken(user);
     }
 
     async findById(id) {
@@ -48,7 +48,7 @@ class UserService {
         if (!comparePassword) {
             throw new Error("Incorrect password");
         }
-        return generateJwt(user.id, user.email);
+        return getUserWithToken(user);
     }
 }
 
@@ -58,6 +58,18 @@ const generateJwt = (id, email) => {
         process.env.JWT_SECRET_KEY,
         {expiresIn: "24h"}
     );
+}
+
+function getUserWithToken(user) {
+    let userWithToken = {};
+    userWithToken.id = user.id;
+    userWithToken.email = user.email;
+    userWithToken.password = user.password;
+    userWithToken.full_name = user.full_name;
+    userWithToken.createdAt = user.createdAt;
+    userWithToken.updatedAt = user.updatedAt;
+    userWithToken.token = generateJwt(user.id, user.email);
+    return userWithToken;
 }
 
 module.exports = new UserService();

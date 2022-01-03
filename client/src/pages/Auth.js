@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {NavLink, useHistory, useLocation} from "react-router-dom";
 import {Context} from "../index";
-import {Button, Card, Container, Form, Row} from "react-bootstrap";
+import {Button, Card, Container, Form} from "react-bootstrap";
 import {LOBBIES_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import {login, registration} from "../http/userApi";
 
@@ -17,14 +17,22 @@ const Auth = () => {
         try {
             let resp;
             if (location.pathname === LOGIN_ROUTE) {
-                await login(email, password);
+                resp = await login(email, password);
             }
             else {
-                await registration(email, password, fullName);
+                resp = await registration(email, password, fullName);
             }
-            user.setUser(user);
-            user.setIsAuth(true);
-            history.push(LOBBIES_ROUTE);
+            if (resp.status === 200) {
+                localStorage.setItem("token", resp.data.token);
+                localStorage.setItem("userId", resp.data.id);
+                delete resp.data.token;
+                user.setUser(resp.data);
+                user.setIsAuth(true);
+                history.push(LOBBIES_ROUTE);
+            }
+            else {
+                alert("Неверный email или пароль");
+            }
         }
         catch (e) {
             alert("Неверный email или пароль")

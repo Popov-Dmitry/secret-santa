@@ -41,8 +41,11 @@ class LobbyService {
         if (!id || id < 0) {
             throw new Error("Incorrect id");
         }
-        return await Lobby.findByPk(id,
+        return await Lobby.findOne(
             {
+                where: {
+                    id: id
+                },
                 include:
                     [{model: Owner, as: "owner"},
                         {model: Price, as: "price"}]

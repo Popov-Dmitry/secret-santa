@@ -19,7 +19,7 @@ const LobbyItem = ({lobby}) => {
                     <hr/>
                     <div className="text-black-50 mb-1 text-lg-center">
                         {lobby.price ?
-                            <div>До {lobby.price} {lobby.currency}</div>
+                            <div>До {lobby.price.gift_price} {lobby.price.currency}</div>
                             :
                             <div>Стоимость подарков не указана</div>
                         }
