@@ -55,6 +55,7 @@ const Auth = () => {
                         className="mb-2"
                         placeholder="Введите email"
                         value={email}
+                        inputMode={"email"}
                         onChange={e => setEmail(e.target.value)}
                     />
                     <Form.Control
@@ -85,7 +86,7 @@ const Auth = () => {
                             </div>
                         }
                         <Button
-                            variant={"outline-success"}
+                            variant={"success"}
                             onClick={click}
                         >
                             {location.pathname === LOGIN_ROUTE ? "Войти" : "Зарегистрироваться"}

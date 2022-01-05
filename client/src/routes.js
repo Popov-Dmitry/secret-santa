@@ -1,8 +1,9 @@
-import {LOBBIES_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
+import {LOBBIES_ROUTE, LOBBY_INVITE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
 import Main from "./pages/Main";
 import Lobbies from "./pages/Lobbies";
 import Auth from "./pages/Auth";
 import Lobby from "./pages/Lobby";
+import Invite from "./pages/Invite";
 
 export const publicRoutes = [
     {
@@ -20,6 +21,10 @@ export const publicRoutes = [
     {
         path: LOBBIES_ROUTE,
         Component: Lobbies
+    },
+    {
+        path: LOBBY_INVITE_ROUTE + "/:id",
+        Component: Invite
     }
 ];
 
