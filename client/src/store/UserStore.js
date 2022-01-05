@@ -7,7 +7,12 @@ export default class UserStore {
         this._user = {};
         let userId = localStorage.getItem("userId");
         if (userId) {
-            fetchById(userId).then(({data}) => this._user = data);
+            fetchById(userId).then(({data, status, statusText}) => {
+                if (status === 200) {
+                    this._user = data;
+                    this._isAuth = true;
+                }
+            });
         }
         makeAutoObservable(this);
     }

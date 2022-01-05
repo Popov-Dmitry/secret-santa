@@ -35,7 +35,7 @@ class LobbyController {
     async getByInviteCode(req, res) {
         try {
             let lobby = await lobbyService.findByInviteCode(req.params.id);
-            return res.status(201).json(lobby);
+            return res.status(200).json(lobby);
         }
         catch (e) {
             return res.status(404).json(e.toString());
