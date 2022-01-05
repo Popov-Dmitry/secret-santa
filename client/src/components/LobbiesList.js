@@ -20,7 +20,6 @@ const LobbiesList = observer(() => {
                     <LobbyItem key={lobby.id} lobby={lobby}/>
                 )
             }
-
         </Row>
     );
 });
