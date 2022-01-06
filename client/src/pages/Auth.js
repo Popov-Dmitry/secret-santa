@@ -42,7 +42,7 @@ const Auth = () => {
     return (
         <Container
             className="d-flex justify-content-center align-items-center"
-            style={{height: window.innerHeight}}
+            style={{height: window.innerHeight - 60}}
         >
             <Card
                 className="p-2 shadow w-75"

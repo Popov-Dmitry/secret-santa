@@ -17,12 +17,14 @@ const Invite = () => {
     const [owner, setOwner] = useState({});
     const [participants, setParticipants] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [isCodeCorrect, setIsCodeCorrect] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
         fetchByInviteCode(id).then(({data, status, statusText}) => {
             if (status === 200) {
                 setLobby(data);
+                setIsCodeCorrect(true);
             } else {
                 alert("Не найдена игра по коду приглашения " + id);
             }
@@ -42,6 +44,13 @@ const Invite = () => {
                     alert(statusText + "\n" + data);
                 }
             });
+        }).catch(reason => {
+            if (user.isAuth) {
+                setIsCodeCorrect(false);
+            }
+            else {
+                setIsCodeCorrect(true);
+            }
         });
     }, []);
 
@@ -52,36 +61,54 @@ const Invite = () => {
     return (
         <Container
             className="d-flex justify-content-center align-items-center"
-            style={{height: window.innerHeight}}
+            style={{height: window.innerHeight - 60}}
         >
-            <Card className="d-flex justify-content-center align-items-center p-2 shadow w-50 h-25" border={"light"}>
-                <div>
-                    {user.isAuth ?
-                        <div>
-                            <div className="fw-bold mb-4">{owner.full_name} пригласил вас для игры в тайного санту!</div>
-                            <div className="d-flex justify-content-between m-2">
-                                <div>
-                                    <Image src={money} width="30px" height="30px"/> до {lobby.price.gift_price} {lobby.price.currency}
-                                </div>
-                                <div>
-                                    <Image src={santa} width="30px" height="30px"/> {participants.length}
-                                </div>
-                            </div>
-                            <div className="d-flex justify-content-between m-2 mt-4">
-                                <Button variant={"success"} onClick={() => setModalVisible(true)}>Принять</Button>
-                                <Button variant={"danger"} onClick={() => history.push(MAIN_ROUTE)}>Отклонить</Button>
-                            </div>
-                        </div>
-                        :
-                        <div className="d-flex flex-column align-items-center">
-                            <div>Вас пригласили для игры в тайного санту!</div>
+            {isCodeCorrect ?
+                <Card
+                    className="d-flex justify-content-center align-items-center p-2 shadow w-50 h-25"
+                    border={"light"}
+                >
+                    <div>
+                        {user.isAuth ?
                             <div>
-                                Чтобы принять участие необходимо <NavLink to={LOGIN_ROUTE}>войти</NavLink> или <NavLink to={REGISTRATION_ROUTE}>зарегистрироваться</NavLink>
+                                <div className="fw-bold mb-4">
+                                    {owner.full_name} пригласил вас для игры в Тайного Санту!
+                                </div>
+                                <div className="d-flex justify-content-between m-2">
+                                    <div>
+                                        <Image src={money} width="30px" height="30px"/>
+                                        <span> до {lobby.price.gift_price} {lobby.price.currency}</span>
+                                    </div>
+                                    <div>
+                                        <Image src={santa} width="30px" height="30px"/> {participants.length}
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-between m-2 mt-4">
+                                    <Button variant={"success"} onClick={() => setModalVisible(true)}>
+                                        Принять
+                                    </Button>
+                                    <Button variant={"danger"} onClick={() => history.push(MAIN_ROUTE)}>
+                                        Отклонить
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
-                    }
+                            :
+                            <div className="d-flex flex-column align-items-center">
+                                <div className="fs-5">Вас пригласили для игры в Тайного Санту!</div>
+                                <div>
+                                    Чтобы принять участие необходимо <NavLink
+                                    to={LOGIN_ROUTE}>войти</NavLink> или <NavLink
+                                    to={REGISTRATION_ROUTE}>зарегистрироваться</NavLink>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </Card>
+                :
+                <div className="text-black-50 display-3">
+                    По введенному коду игра не найдена
                 </div>
-            </Card>
+            }
             <NewParticipant
                 show={modalVisible}
                 onHide={() => setModalVisible(false)}
