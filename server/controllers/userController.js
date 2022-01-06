@@ -32,6 +32,17 @@ class UserController {
             return res.status(400).json(e.toString());
         }
     }
+
+    async validateToken(req, res) {
+        try {
+            let {id, email} = req.body;
+            let token = await userService.refresh(id, email);
+            return res.status(200).json({token});
+        }
+        catch (e) {
+            return res.status(400).json(e.toString());
+        }
+    }
 }
 
 module.exports = new UserController();

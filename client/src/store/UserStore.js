@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-import {fetchById} from "../http/userApi";
+import {fetchById, refreshToken} from "../http/userApi";
 
 export default class UserStore {
     constructor() {
@@ -7,11 +7,40 @@ export default class UserStore {
         this._user = {};
         let userId = localStorage.getItem("userId");
         if (userId) {
+            this._isAuth = true;
+            console.log(1);
             fetchById(userId).then(({data, status, statusText}) => {
                 if (status === 200) {
-                    this._user = data;
-                    this._isAuth = true;
+                    this.setUser(data);
+                    this.setIsAuth(true);
+                    console.log(2);
                 }
+                else {
+                    localStorage.clear();
+                    this._isAuth = false;
+                    this._user = {};
+                }
+                return data;
+            }).then(dat => {
+                console.log(dat.email);
+                refreshToken(dat.id, dat.email).then(({data, status, statusText}) => {
+                    if (status === 200) {
+                        localStorage.setItem("token", data.token);
+                    }
+                    else {
+                        localStorage.clear();
+                        this._isAuth = false;
+                        this._user = {};
+                    }
+                }).catch(reason => {
+                    localStorage.clear();
+                    this.setUser({});
+                    this.setIsAuth(false);
+                })
+            }).catch(reason => {
+                localStorage.clear();
+                this.setUser({});
+                this.setIsAuth(false);
             });
         }
         makeAutoObservable(this);

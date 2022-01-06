@@ -1,5 +1,6 @@
 export const ADD_USER = "/api/users";
 export const FETCH_USERS = "/api/users";
+export const REFRESH_TOKEN = "/api/users/token/validate";
 export const LOGIN_USER = "/api/users/login";
 export const ADD_LOBBY = "/api/lobbies";
 export const FETCH_LOBBIES = "/api/lobbies";

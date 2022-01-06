@@ -42,13 +42,30 @@ class UserService {
                 }
             });
         if (!user) {
-            throw new Error(`User with email ${email} already exists`);
+            throw new Error(`User with email ${email} does not exists`);
         }
         let comparePassword = bcrypt.compareSync(password, user.password);
         if (!comparePassword) {
             throw new Error("Incorrect password");
         }
         return getUserWithToken(user);
+    }
+
+    async refresh(id, email) {
+        if (!email || email.trim().length === 0 || !id || id < 0) {
+            throw new Error("Incorrect email or userId");
+        }
+        const user = await User.findOne(
+            {
+                where: {
+                    id: id,
+                    email: email
+                }
+            });
+        if (!user) {
+            throw new Error(`User with id ${id} and email ${email} does not exists`);
+        }
+        return generateJwt(id, email);
     }
 }
 

@@ -34,7 +34,6 @@ class ParticipantController {
 
     async count(req, res) {
         try {
-            console.log("aboba")
             let participantsCount = await participantService.count();
             return res.status(200).json({count: participantsCount});
         }
