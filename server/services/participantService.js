@@ -32,6 +32,10 @@ class ParticipantService {
                 include: [{model: User, as: "user"}]
             })
     }
+
+    async count() {
+        return await Participant.count();
+    }
 }
 
 module.exports = new ParticipantService();
