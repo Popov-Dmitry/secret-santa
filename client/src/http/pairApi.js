@@ -11,7 +11,7 @@ export const fetchByFromId = async (fromId) => {
     return {data, status, statusText};
 }
 
-export const fetchByLobbyId = async (lobbyId) => {
+export const fetchPairsByLobbyId = async (lobbyId) => {
     const {data, status, statusText} = await $authHost.get(FETCH_PAIRS_BY_LOBBY_ID + "/" + lobbyId);
     return {data, status, statusText};
 }
