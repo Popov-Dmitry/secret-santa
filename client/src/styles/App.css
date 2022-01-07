@@ -1,0 +1,64 @@
+.light-grey-to-white-background {
+    background: linear-gradient(rgb(248, 249, 250), white);
+}
+
+.light-grey-background {
+    background: rgb(248, 249, 250);
+}
+
+.step {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: rgb(220, 53, 69);
+    margin: 1em;
+    border-radius: 50%;
+    text-align: center;
+    font-size: x-large;
+}
+
+.santa {
+    animation: santa 5s infinite linear;
+}
+
+.invite-code {
+    border-radius: 30px;
+    background: rgb(248, 249, 250);
+}
+
+.copy-invite-code {
+    animation: copy 2s linear;
+}
+
+@keyframes copy {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 80%;
+    }
+    75% {
+        opacity: 80%;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes santa {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(2deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
