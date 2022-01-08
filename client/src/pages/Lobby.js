@@ -36,14 +36,15 @@ const Lobby = observer(() => {
         fetchPairsByLobbyId(id).then(({data, status, statusText}) => {
             if (status === 200) {
                 setPairs(data);
-                if (pairs.length !== 0) {
-                    setPair(pairs.filter(pair => pair.from.id !== user.user.id)[0]);
-                }
             } else {
                 alert(statusText + "\n" + data);
             }
         });
     }, []);
+
+    useEffect(() => {
+        setPair(pairs.filter(pair => pair.from.id !== user.user.id)[0]);
+    }, [pairs])
 
     return (
         <Container>
@@ -66,7 +67,10 @@ const Lobby = observer(() => {
                             setPair={setPair}
                         />
                         :
-                        <PairedLobby lobby={lobby} pair={pair}/>
+                        <div>
+                            {pair && <PairedLobby lobby={lobby} pair={pair}/>}
+                        </div>
+
                     }
                 </div>
                 :

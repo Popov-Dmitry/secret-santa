@@ -2,8 +2,8 @@
     background: linear-gradient(rgb(248, 249, 250), white);
 }
 
-.light-grey-background {
-    background: rgb(248, 249, 250);
+.white-to-light-grey-background {
+    background: linear-gradient(white, rgb(248, 249, 250));
 }
 
 .step {
