@@ -36,6 +36,14 @@ class ParticipantService {
     async count() {
         return await Participant.count();
     }
+
+    async deleteById(id) {
+        return await Participant.destroy({
+            where: {
+                id: id
+            }
+        });
+    }
 }
 
 module.exports = new ParticipantService();

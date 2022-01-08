@@ -1,6 +1,6 @@
 import {$authHost, $host} from "./index";
 import {
-    ADD_PARTICIPANT,
+    ADD_PARTICIPANT, DELETE_PARTICIPANT_BY_ID,
     FETCH_PARTICIPANTS,
     FETCH_PARTICIPANTS_BY_LOBBY_ID,
     FETCH_TOTAL_PARTICIPANTS_COUNT
@@ -23,5 +23,10 @@ export const fetchByLobbyId = async (lobbyId) => {
 
 export const fetchTotalCount = async () => {
     const {data, status, statusText} = await $host.get(FETCH_TOTAL_PARTICIPANTS_COUNT);
+    return {data, status, statusText};
+}
+
+export const deleteById = async (id) => {
+    const {data, status, statusText} = await $authHost.delete(DELETE_PARTICIPANT_BY_ID + "/" + id);
     return {data, status, statusText};
 }
