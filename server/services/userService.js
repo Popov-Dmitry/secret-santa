@@ -67,6 +67,38 @@ class UserService {
         }
         return generateJwt(id, email);
     }
+
+    async update(id, email, full_name, password) {
+        if (!email || email.trim().length === 0 || !id || id < 0) {
+            throw new Error("Incorrect email or userId");
+        }
+        if (!full_name || full_name.trim().length === 0) {
+            throw new Error("Empty name");
+        }
+        if (password && password.trim().length !== 0) {
+            const hashPassword = await bcrypt.hash(password, 5);
+            await User.update({
+                email: email,
+                full_name: full_name,
+                password: hashPassword
+            }, {
+                where: {
+                    id: id
+                }
+            });
+            return this.findById(id);
+        }
+        await User.update({
+            email: email,
+            full_name: full_name
+        }, {
+            where: {
+                id: id
+            }
+        });
+        return this.findById(id);
+
+    }
 }
 
 const generateJwt = (id, email) => {

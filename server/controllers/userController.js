@@ -43,6 +43,17 @@ class UserController {
             return res.status(400).json(e.toString());
         }
     }
+
+    async update(req, res) {
+        try {
+            let {email, fullName, password} = req.body;
+            let user = await userService.update(req.params.id, email, fullName, password);
+            return res.status(200).json(user);
+        }
+        catch (e) {
+            return res.status(400).json(e.toString());
+        }
+    }
 }
 
 module.exports = new UserController();

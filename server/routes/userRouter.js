@@ -7,5 +7,6 @@ router.post("/", userController.create);
 router.get("/:id", userController.getById);
 router.post("/login", userController.login);
 router.post("/token/validate", authMiddleware, userController.validateToken);
+router.patch("/:id", authMiddleware, userController.update);
 
 module.exports = router;
