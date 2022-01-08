@@ -55,7 +55,7 @@ const GatheringLobby = ({lobby, participants, setParticipants, pairs, setPair, s
             </Col>
             <Col md={2}>
                 <div className="d-flex justify-content-end">
-                    <GiftPrice price={lobby.price.gift_price} currency={lobby.price.currency}/>
+                    <GiftPrice price={lobby.price}/>
                 </div>
                 {user.user.id === lobby.owner.userId &&
                     <LobbyInviteCode inviteCode={lobby.invite_code}/>

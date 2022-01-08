@@ -1,4 +1,5 @@
 import {
+    CREATE_LOBBY_ROUTE,
     LOBBIES_ROUTE,
     LOBBY_INVITE_ROUTE,
     LOGIN_ROUTE,
@@ -12,6 +13,7 @@ import Auth from "./pages/Auth";
 import Lobby from "./pages/Lobby";
 import Invite from "./pages/Invite";
 import MyGames from "./pages/MyGames";
+import CreateGame from "./pages/CreateGame";
 
 export const publicRoutes = [
     {
@@ -40,6 +42,10 @@ export const authRoutes = [
     {
         path: MY_LOBBIES_ROUTE,
         Component: MyGames
+    },
+    {
+        path: CREATE_LOBBY_ROUTE,
+        Component: CreateGame
     },
     {
         path: LOBBIES_ROUTE + "/:id",

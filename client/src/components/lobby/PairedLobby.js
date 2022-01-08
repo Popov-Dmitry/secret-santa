@@ -12,7 +12,7 @@ const PairedLobby = ({lobby, pair}) => {
             </Col>
             <Col md={2}>
                 <div className="d-flex justify-content-end">
-                    <GiftPrice price={lobby.price.gift_price} currency={lobby.price.currency}/>
+                    <GiftPrice price={lobby.price}/>
                 </div>
             </Col>
         </Row>
