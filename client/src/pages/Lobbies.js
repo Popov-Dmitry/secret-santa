@@ -21,7 +21,7 @@ const Lobbies = observer(() => {
 
     return (
         <Container>
-            <LobbiesList/>
+            <LobbiesList lobbies={lobbies.lobbies}/>
         </Container>
     );
 });

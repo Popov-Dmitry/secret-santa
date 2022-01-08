@@ -41,6 +41,26 @@ class LobbyController {
             return res.status(404).json(e.toString());
         }
     }
+
+    async getAllByOwnerId(req, res) {
+        try {
+            let lobbies = await lobbyService.findAllByOwnerId(req.params.id);
+            return res.status(200).json(lobbies);
+        }
+        catch (e) {
+            return res.status(500).json(e.toString());
+        }
+    }
+
+    async getAllByUserId(req, res) {
+        try {
+            let lobbies = await lobbyService.findAllByUserId(req.params.id);
+            return res.status(200).json(lobbies);
+        }
+        catch (e) {
+            return res.status(500).json(e.toString());
+        }
+    }
 }
 
 module.exports = new LobbyController();
