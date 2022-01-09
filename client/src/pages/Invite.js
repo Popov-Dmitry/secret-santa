@@ -22,7 +22,7 @@ const Invite = () => {
     const history = useHistory();
 
     useEffect(() => {
-        fetchByInviteCode(id).then(({data, status, statusText}) => {
+        fetchByInviteCode(id).then(({data, status}) => {
             if (status === 200) {
                 setLobby(data);
                 setIsCodeCorrect(true);
@@ -46,7 +46,7 @@ const Invite = () => {
                     alert(statusText + "\n" + data);
                 }
             });
-        }).catch(reason => {
+        }).catch(() => {
             if (user.isAuth) {
                 setIsCodeCorrect(false);
             }
@@ -56,11 +56,9 @@ const Invite = () => {
         }).finally(() => setIsLoading(false));
     }, []);
 
-    // if (participants.some(participant => participant.user.id === user.user.id)) {
-    //     history.push(LOBBIES_ROUTE + "/" + lobby.id)
-    // }
-
-    console.log(lobby);
+    if (participants.some(participant => participant.user.id === user.user.id)) {
+        history.push(LOBBIES_ROUTE + "/" + lobby.id)
+    }
 
     return (
         <Container

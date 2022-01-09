@@ -1,6 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Context} from "../index";
-import {Button, Container, Form, Spinner} from "react-bootstrap";
+import {Button, Container, Form} from "react-bootstrap";
 import MyFormLabel from "../components/MyFormLabel";
 import {observer} from "mobx-react-lite";
 import {update} from "../http/userApi";

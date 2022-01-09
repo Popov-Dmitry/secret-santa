@@ -8,12 +8,10 @@ export default class UserStore {
         let userId = localStorage.getItem("userId");
         if (userId) {
             this._isAuth = true;
-            console.log(1);
-            fetchById(userId).then(({data, status, statusText}) => {
+            fetchById(userId).then(({data, status}) => {
                 if (status === 200) {
                     this.setUser(data);
                     this.setIsAuth(true);
-                    console.log(2);
                 }
                 else {
                     localStorage.clear();
@@ -22,8 +20,7 @@ export default class UserStore {
                 }
                 return data;
             }).then(dat => {
-                console.log(dat.email);
-                refreshToken(dat.id, dat.email).then(({data, status, statusText}) => {
+                refreshToken(dat.id, dat.email).then(({data, status}) => {
                     if (status === 200) {
                         localStorage.setItem("token", data.token);
                     }
@@ -32,12 +29,12 @@ export default class UserStore {
                         this._isAuth = false;
                         this._user = {};
                     }
-                }).catch(reason => {
+                }).catch(() => {
                     localStorage.clear();
                     this.setUser({});
                     this.setIsAuth(false);
                 })
-            }).catch(reason => {
+            }).catch(() => {
                 localStorage.clear();
                 this.setUser({});
                 this.setIsAuth(false);

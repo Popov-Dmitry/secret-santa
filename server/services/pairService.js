@@ -23,7 +23,6 @@ class PairService {
         while (participants.length !== 0) {
             let participant = participants.shift();
             let participant2 = participants2.shift();
-            console.log(participant.id + "," + participant2.id);
             while (participant.id === participant2.id) {
                 participants.push(participant);
                 participant = participants.shift();

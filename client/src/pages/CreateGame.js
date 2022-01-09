@@ -58,7 +58,6 @@ const CreateGame = () => {
             history.push(LOBBIES_ROUTE + "/" + res.data.id);
         }
         else {
-            console.log(res.status);
             alert("Что-то пошло не так");
         }
     }

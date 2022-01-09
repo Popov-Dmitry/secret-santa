@@ -1,7 +1,15 @@
 import React, {useContext, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {Button, Container, Form, Image, Nav, Navbar, NavDropdown} from "react-bootstrap";
-import {LOBBIES_ROUTE, LOBBY_INVITE_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {
+    ACCOUNT_ROUTE,
+    CREATE_LOBBY_ROUTE,
+    LOBBIES_ROUTE,
+    LOBBY_INVITE_ROUTE,
+    LOGIN_ROUTE,
+    MAIN_ROUTE, MY_LOBBIES_ROUTE,
+    REGISTRATION_ROUTE
+} from "../utils/consts";
 import logo from "../assets/logo.png";
 import search from "../assets/search.png";
 import {Context} from "../index";
@@ -49,10 +57,10 @@ const NavBar = observer(() => {
                 <Nav>
                     {user.isAuth ?
                         <Nav>
-                            <Nav.Link>Создать игру</Nav.Link>
-                            <Nav.Link>Мои игры</Nav.Link>
+                            <Nav.Link href={CREATE_LOBBY_ROUTE}>Создать игру</Nav.Link>
+                            <Nav.Link href={MY_LOBBIES_ROUTE}>Мои игры</Nav.Link>
                             <NavDropdown title={user.user.full_name}>
-                                <Nav.Link href={"/account"}>Настройки</Nav.Link>
+                                <Nav.Link href={ACCOUNT_ROUTE}>Настройки</Nav.Link>
                                 <Nav.Link onClick={logOut}>Выход</Nav.Link>
                             </NavDropdown>
                         </Nav>

@@ -11,7 +11,6 @@ import {fetchTotalCount} from "../http/participantApi";
 import PageLoadingSpinner from "../components/PageLoadingSpinner";
 
 const Main = () => {
-    const {user} = useContext(Context);
     const [santasCount, setSantasCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 

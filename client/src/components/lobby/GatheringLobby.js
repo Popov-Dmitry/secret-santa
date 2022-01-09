@@ -15,7 +15,7 @@ const GatheringLobby = ({lobby, participants, setParticipants, pairs, setPair, s
             alert("Число участников должно быть четным!");
             return;
         }
-        const {data, status, statusText} = await pairUp(lobby.id);
+        const {data, status} = await pairUp(lobby.id);
         if (status === 200) {
             setPairs(data);
             if (pairs.length !== 0) {
