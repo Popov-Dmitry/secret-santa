@@ -114,7 +114,7 @@ const CreateGame = () => {
                         </Form.Select>
                     </div>
                 </div>
-                <MyFormLabel text="Учавстуете ли вы в игре"/>
+                <MyFormLabel text="Участуете ли вы в игре"/>
                 <MyFormCheck
                     checked={isParticipate}
                     onChange={e => setIsParticipate(e.target.checked)}

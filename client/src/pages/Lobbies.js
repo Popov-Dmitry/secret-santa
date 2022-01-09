@@ -1,12 +1,14 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {fetchAllPublic} from "../http/lobbyApi";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import {Container} from "react-bootstrap";
 import LobbiesList from "../components/LobbiesList";
+import PageLoadingSpinner from "../components/PageLoadingSpinner";
 
 const Lobbies = observer(() => {
     const {lobbies} = useContext(Context);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchAllPublic().then(({data, status, statusText}) => {
@@ -16,12 +18,16 @@ const Lobbies = observer(() => {
             else {
                 alert(statusText + "\n" + data);
             }
-        });
+        }).finally(() => setIsLoading(false));
     }, []);
 
     return (
         <Container>
-            <LobbiesList lobbies={lobbies.lobbies}/>
+            {isLoading ?
+                <PageLoadingSpinner/>
+                :
+                <LobbiesList lobbies={lobbies.lobbies}/>
+            }
         </Container>
     );
 });
