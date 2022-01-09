@@ -6,7 +6,7 @@ import step1 from "../assets/step1.png";
 import step2 from "../assets/step2.png";
 import step3 from "../assets/step3.png";
 import "../styles/App.css";
-import {LOBBIES_ROUTE} from "../utils/consts";
+import {CREATE_LOBBY_ROUTE, LOBBIES_ROUTE} from "../utils/consts";
 import {fetchTotalCount} from "../http/participantApi";
 import PageLoadingSpinner from "../components/PageLoadingSpinner";
 
@@ -42,6 +42,7 @@ const Main = () => {
                                 variant={"danger"}
                                 size={"lg"}
                                 style={{marginRight: "1rem", width: "180px"}}
+                                href={CREATE_LOBBY_ROUTE}
                             >
                                 Создать игру
                             </Button>
