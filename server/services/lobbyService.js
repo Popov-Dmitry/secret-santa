@@ -1,4 +1,4 @@
-const {User, Lobby, Owner, Price} = require("../models/models");
+const {User, Lobby, Owner, Price, Participant} = require("../models/models");
 
 class LobbyService {
     async create(title, description, isPrivate, ownerId, giftPrice, currency) {
@@ -41,8 +41,11 @@ class LobbyService {
         if (!id || id < 0) {
             throw new Error("Incorrect id");
         }
-        return await Lobby.findByPk(id,
+        return await Lobby.findOne(
             {
+                where: {
+                    id: id
+                },
                 include:
                     [{model: Owner, as: "owner"},
                         {model: Price, as: "price"}]
@@ -65,6 +68,22 @@ class LobbyService {
             return lobby;
         }
         throw new Error("Incorrect invite code");
+    }
+
+    async findAllByOwnerId(id) {
+        return await Lobby.findAll({
+            include:
+                [{model: Owner, as: "owner", where: {userId: id}},
+                    {model: Price, as: "price"}]
+        });
+    }
+
+    async findAllByUserId(id) {
+        return await Lobby.findAll({
+            include:
+                [{model: Participant, as: "participants", where: {userId: id}},
+                    {model: Price, as: "price"}]
+        });
     }
 }
 

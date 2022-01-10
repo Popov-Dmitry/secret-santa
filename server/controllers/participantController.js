@@ -31,6 +31,26 @@ class ParticipantController {
             return res.status(404).json(e.toString());
         }
     }
+
+    async count(req, res) {
+        try {
+            let participantsCount = await participantService.count();
+            return res.status(200).json({count: participantsCount});
+        }
+        catch (e) {
+            return res.status(500).json(e.toString())
+        }
+    }
+
+    async deleteById(req, res) {
+        try {
+            let del = await participantService.deleteById(req.params.id);
+            return res.status(200).json(del);
+        }
+        catch (e) {
+            return res.status(400).json(e.toString());
+        }
+    }
 }
 
 module.exports = new ParticipantController();
