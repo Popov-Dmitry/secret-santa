@@ -16,7 +16,7 @@ This application has developed to help you play this game online!
 
 ## How to run it on your computer
 
-- Install [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/) и [PostgreSQL](https://www.postgresql.org/)
+- Install [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/) and [PostgreSQL](https://www.postgresql.org/)
 - Clone this repository
 - In the file `./server/.env` change DB access variables:
 - - `DB_NAME`
@@ -25,7 +25,7 @@ This application has developed to help you play this game online!
 - - `DB_HOST`
 - - `DB_PORT`
 - Optionally change the secret key for encrypting/decrypting JWT tokens `JWT_SECRET_KEY`
-- In the file `./client/.env` change variable `REACT_APP_API_URL` - адрес сервера
+- In the file `./client/.env` change variable `REACT_APP_API_URL` - server url
 - In the file `./server` run the server application by typing in terminal `node index.js`
 - In the file `./client` run the client application by typing in terminal `npm start`
 - Go to your browser and type `http://localhost:3000/`
