@@ -1,15 +1,11 @@
 # Secret Santa
 
----
-
 Secret Santa is a game in which group participants pair up and exchange gifts anonymously.
 This application has developed to help you play this game online!
 
 ![Main page](./screenshot.png)
 
 ## Used technologies
-
----
 
 - HTML5, CSS, JS, [Bootstrap](https://getbootstrap.com/)
 - [React](https://reactjs.org/)
@@ -19,8 +15,6 @@ This application has developed to help you play this game online!
 - [npm](https://www.npmjs.com/)
 
 ## How to run it on your computer
-
----
 
 - Install [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/) и [PostgreSQL](https://www.postgresql.org/)
 - Clone this repository
@@ -37,8 +31,6 @@ This application has developed to help you play this game online!
 - Go to your browser and type `http://localhost:3000/`
 
 ## Website pages
-
----
 
 - `/` - main page
 - `/registration` - registration page
